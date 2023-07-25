@@ -228,8 +228,8 @@ dependencies {
       - src
         - jvmMain
           - kotlin
-            - [Main.kt](https://github.com/sahildobariya28/KMPSetup/blob/main/desktopApp/src/jvmMain/kotlin/Main.kt)
-      - [build.gradle.kt](https://github.com/sahildobariya28/KMPSetup/blob/main/desktopApp/build.gradle.kts)
+            - Main.kt
+      - build.gradle.kt
     ```
  2. In the setting.gradle.kts include desktopApp Modlue
     ```
