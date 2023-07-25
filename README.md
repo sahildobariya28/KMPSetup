@@ -220,3 +220,66 @@ dependencies {
 }
 ```
 
+
+## How to Add Desktop Module
+ 1. make desktop Modlue like ...
+    ```
+    - desktopApp
+      - src
+        - jvmMain
+          - kotlin
+            - [Main.kt](https://github.com/sahildobariya28/KMPSetup/blob/main/desktopApp/src/jvmMain/kotlin/Main.kt)
+      - [build.gradle.kt](https://github.com/sahildobariya28/KMPSetup/blob/main/desktopApp/build.gradle.kts)
+    ```
+ 2. In the setting.gradle.kts include desktopApp Modlue
+    ```
+      include(":desktopApp")
+    ```
+ 3. In the shared/build.gradle.kts inside setup desktopApp for Windows and Mac
+    ```
+    kotlin {
+        ...
+        jvm("desktop")
+        macosX64 {
+            binaries {
+                executable {
+                    entryPoint = "main"
+                }
+            }
+        }
+        macosArm64 {
+            binaries {
+                executable {
+                    entryPoint = "main"
+                }
+            }
+        }
+    }
+    ```
+
+     ```
+    kotlin {
+        ...
+        sourceSets {
+     
+            ...
+     
+            val desktopMain by getting {
+                dependencies {
+                    implementation(compose.desktop.common)
+                }
+            }
+            //for mac os
+            val macosMain by getting {
+                dependsOn(commonMain)
+            }
+            val macosX64Main by getting {
+                dependsOn(macosMain)
+            }
+            val macosArm64Main by getting {
+                dependsOn(macosMain)
+            }
+        }
+    }
+    ```
+ 4. 
